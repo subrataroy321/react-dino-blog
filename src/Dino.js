@@ -13,6 +13,10 @@ class Dino_blog extends Component {
     }
   }
 
+  state = {
+    tempBody: ''
+  }
+
   handleBodyEdit = () => {
     //console.log(this.state)
     let input = prompt("Edit the body")
@@ -23,18 +27,33 @@ class Dino_blog extends Component {
 
   }
 
+  handleFromEdit = (e) => {
+    e.preventDefault();
+    //console.log(e)
+    this.setState({
+      body: this.state.tempBody
+    })
+  }
+
   render() {
     let allComments = this.props.post.comments.map((c,i)=> {
       return <Comment key={i} body={c}/>
     })
-    console.log(allComments)
-    console.log(this.props)
+    // console.log(allComments)
+    // console.log(this.props)
     return(
       <div class="dino_blog">
         <h1>{this.props.post.title}</h1>
         <p>by {this.props.post.author}</p>
         <p>{this.state.body}</p>
-        <button onClick={this.handleBodyEdit}> Edit the body of this article</button>
+        <form onSubmit={this.handleFromEdit}>
+        <h5>New body Content</h5>
+          <input type="text" name="body" onChange={e => this.setState({tempBody: e.target.value})} />
+          <input type="submit" />
+
+        </form>
+
+        {/* <button onClick={this.handleBodyEdit}> Edit the body of this article</button> */}
         <div class="comments">
           <h3>Comments:</h3>
           {allComments}
