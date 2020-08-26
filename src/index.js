@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Dino_blog from './Dino';
 import * as serviceWorker from './serviceWorker';
+
+let post = {
+  title: "Dinosaurs are awasome",
+  author: "Stealthy Stegosaurus",
+  body: "🦖Check out this body property!🦖",
+  comments: ["First","Great post", "Hire this author now"]
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Dino_blog post={post} body={post.body} />
   </React.StrictMode>,
   document.getElementById('root')
 );
